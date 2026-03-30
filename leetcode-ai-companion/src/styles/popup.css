@@ -1,0 +1,66 @@
+.popup-shell {
+  width: 340px;
+  margin: 0;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: 'Segoe UI', 'IBM Plex Sans', sans-serif;
+  background: #0f131a;
+  color: #e4ebf5;
+}
+
+.popup-shell h1 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.popup-shell p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #95a5bc;
+}
+
+.popup-shell label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.popup-shell input,
+.popup-shell select,
+.popup-shell button {
+  border: 1px solid #2b3646;
+  border-radius: 8px;
+  background: #1a2230;
+  color: #e4ebf5;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.popup-shell button {
+  background: linear-gradient(135deg, #2476ff, #2fb4ff);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.popup-toggle {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.popup-toggle input {
+  width: auto;
+}
+
+.popup-success {
+  color: #5fe3a2;
+}
+
+.popup-error {
+  color: #ff7f7f;
+}

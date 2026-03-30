@@ -1,0 +1,1142 @@
+/* ────────────────────────────────────────────
+   LeetCode AI Companion — Premium Dark Theme
+   ──────────────────────────────────────────── */
+
+:host,
+#lc-ai-companion-container {
+  all: initial;
+}
+
+.lcai-root {
+  --bg: #0b0e14;
+  --surface: #12161e;
+  --surface-2: #181e28;
+  --surface-3: #1e2533;
+  --text: #e8edf5;
+  --muted: #7a8ba3;
+  --accent: #3ba2ff;
+  --border: #232e3e;
+  --danger: #ff6b6b;
+  --radius: 12px;
+  color: var(--text);
+  font-family: 'Segoe UI', 'SF Pro Text', 'Inter', sans-serif;
+}
+
+.lcai-root.light {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-2: #eef3fa;
+  --surface-3: #e4ebf5;
+  --text: #1b2430;
+  --muted: #526074;
+  --accent: #1e88e5;
+  --border: #c8d3e0;
+  --danger: #d84343;
+}
+
+/* ─── FAB (Floating Action Button) ─── */
+
+.lcai-fab {
+  position: fixed;
+  top: 255px;
+  right: 34px;
+  z-index: 2147483000;
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(255, 184, 74, 0.4);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 214, 102, 0.32), transparent 45%),
+    linear-gradient(180deg, #362718, #1f1710);
+  color: #ffb646;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 193, 83, 0.18);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.lcai-fab:hover {
+  transform: translateY(-1px) scale(1.03);
+  border-color: rgba(255, 190, 86, 0.82);
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.52),
+    0 0 0 4px rgba(255, 182, 70, 0.16),
+    inset 0 0 0 1px rgba(255, 211, 130, 0.28);
+}
+
+.lcai-fab.open {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 214, 102, 0.2), transparent 45%),
+    linear-gradient(180deg, #473224, #251a13);
+}
+
+.lcai-fab-icon {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.lcai-fab-tooltip {
+  position: absolute;
+  right: 68px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 184, 74, 0.28);
+  border-radius: 999px;
+  background: rgba(24, 18, 13, 0.96);
+  color: #ffd48c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.lcai-fab:hover .lcai-fab-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-2px);
+}
+
+/* ─── Panel Container ─── */
+
+.lcai-panel {
+  position: fixed;
+  right: 18px;
+  top: 88px;
+  width: min(560px, calc(100vw - 24px));
+  height: min(calc(100vh - 110px), 860px);
+  z-index: 2147483000;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(59, 162, 255, 0.06);
+}
+
+.lcai-panel-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 30;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lcai-panel-close:hover {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+}
+
+.lcai-panel-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.lcai-panel-empty {
+  padding: 20px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ─── Top Bar ─── */
+
+.lcai-topbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.lcai-topbar h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.lcai-topbar p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.lcai-topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.lcai-inline-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* ─── Alerts ─── */
+
+.lcai-alert {
+  flex-shrink: 0;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 12px;
+}
+
+.lcai-alert-error {
+  background: color-mix(in srgb, var(--danger) 8%, var(--surface-2));
+  color: var(--danger);
+}
+
+.lcai-alert-loading {
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface-2));
+}
+
+.lcai-alert-loading .lcai-loading {
+  color: var(--accent);
+  padding: 0;
+}
+
+.lcai-error-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lcai-error-content button {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  font-size: 11px;
+}
+
+.lcai-alert-interview {
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface-2));
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.lcai-alert-interview strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.lcai-alert-interview p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ─── Loading Spinner ─── */
+
+.lcai-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.lcai-loading::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: lcai-spin 0.7s linear infinite;
+}
+
+@keyframes lcai-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ═══════════════════════════════════
+   HOME VIEW — Feature Grid Dashboard
+   ═══════════════════════════════════ */
+
+.lcai-home {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+}
+
+.lcai-home-subtitle {
+  margin: 0 0 14px;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.lcai-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.lcai-feature-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.lcai-feature-tile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--tile-accent, var(--accent));
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.lcai-feature-tile:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--tile-accent, var(--accent)) 45%, var(--border));
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    0 0 0 1px color-mix(in srgb, var(--tile-accent, var(--accent)) 15%, transparent);
+  background: var(--surface-2);
+}
+
+.lcai-feature-tile:hover::before {
+  opacity: 1;
+}
+
+.lcai-feature-tile:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.lcai-tile-icon {
+  font-size: 22px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.lcai-tile-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.lcai-tile-desc {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+/* ═══════════════════════════════
+   FEATURE VIEW — Full Page Content
+   ═══════════════════════════════ */
+
+.lcai-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: lcai-slide-in 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes lcai-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.lcai-view-nav {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.lcai-back-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.lcai-back-btn:hover {
+  background: var(--surface-3);
+  border-color: var(--accent);
+}
+
+.lcai-view-icon {
+  font-size: 20px;
+  line-height: 1;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--tile-accent, var(--accent)) 12%, var(--surface-2));
+  border: 1px solid color-mix(in srgb, var(--tile-accent, var(--accent)) 25%, var(--border));
+  flex-shrink: 0;
+}
+
+.lcai-view-title h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.lcai-view-title p {
+  margin: 2px 0 0;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.lcai-view-body {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lcai-view-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lcai-muted-text {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+  margin: 0;
+}
+
+/* ─── Form Elements ─── */
+
+button,
+select,
+input,
+textarea {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 12px;
+  border-radius: 8px;
+  padding: 8px 10px;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+button {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover:not(:disabled) {
+  background: var(--surface-3);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button.active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 18%, var(--surface-2));
+  color: var(--accent);
+}
+
+textarea,
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
+/* ─── Pre-formatted Text ─── */
+
+pre {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface-2) 90%, black 10%);
+  padding: 12px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  font-size: 12px;
+}
+
+/* ─── Layout Utilities ─── */
+
+.lcai-row-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lcai-stack-output {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ─── Tags ─── */
+
+.lcai-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.lcai-tags span {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 11px;
+  background: var(--surface-2);
+  font-weight: 500;
+}
+
+/* ─── Card (used inside feature view) ─── */
+
+.lcai-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.lcai-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.lcai-card-header h3 {
+  margin: 0;
+  font-size: 13px;
+}
+
+.lcai-card-header p {
+  margin: 3px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.lcai-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+}
+
+/* ─── Snapshot Grid ─── */
+
+.lcai-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.lcai-snapshot-grid h4 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ─── Progress Stats ─── */
+
+.lcai-progress-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.lcai-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.lcai-stat-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.lcai-stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.lcai-progress-grid + h4,
+.lcai-progress-grid ~ h4 {
+  margin: 10px 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ─── Chat ─── */
+
+.lcai-chat-box {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 10px;
+  flex: 1;
+  min-height: 200px;
+  max-height: 400px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lcai-chat-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 30px 12px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.lcai-chat-empty span {
+  font-size: 28px;
+}
+
+.lcai-chat-empty p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.lcai-chat-message {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.lcai-chat-message.user {
+  padding: 8px 10px;
+  border-radius: 8px 8px 2px 8px;
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface-3));
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+  align-self: flex-end;
+}
+
+.lcai-chat-message.assistant {
+  padding: 8px 10px;
+  border-radius: 8px 8px 8px 2px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.lcai-chat-message strong {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.lcai-chat-message p {
+  margin: 3px 0 0;
+  white-space: pre-wrap;
+}
+
+.lcai-chat-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.lcai-chat-controls input {
+  flex: 1;
+}
+
+.lcai-chat-controls button {
+  width: 40px;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 8px;
+}
+
+/* ─── Hint Interview Note ─── */
+
+.lcai-hint-interview-note {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface-2));
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+}
+
+.lcai-hint-interview-note small {
+  color: var(--accent);
+  font-size: 11px;
+}
+
+/* ─── Links List ─── */
+
+.lcai-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lcai-links-list li {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--surface-2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color 0.15s ease;
+}
+
+.lcai-links-list li:hover {
+  border-color: var(--accent);
+}
+
+.lcai-links-list a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.lcai-links-list a:hover {
+  text-decoration: underline;
+}
+
+.lcai-links-list span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 840px) {
+  .lcai-panel {
+    right: 10px;
+    left: 10px;
+    width: auto;
+    height: calc(100vh - 90px);
+    top: 74px;
+  }
+
+  .lcai-fab {
+    top: auto;
+    right: 16px;
+    bottom: 18px;
+  }
+
+  .lcai-fab-tooltip {
+    display: none;
+  }
+
+  .lcai-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lcai-snapshot-grid,
+  .lcai-progress-grid,
+  .lcai-complexity-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════
+   ENHANCED FEATURE STYLES
+   ═══════════════════════════════════════ */
+
+/* ─── Feature Error Banner ─── */
+.lcai-feature-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--danger) 10%, var(--surface-2));
+  border: 1px solid color-mix(in srgb, var(--danger) 30%, var(--border));
+  font-size: 12px;
+  color: var(--danger);
+}
+
+.lcai-feature-error button {
+  flex-shrink: 0;
+  padding: 4px 12px;
+  font-size: 11px;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.lcai-feature-error button:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* ─── Feature Info Banner ─── */
+.lcai-feature-info-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface-2));
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.lcai-feature-info-banner span {
+  font-size: 16px;
+}
+
+/* ─── Hint Cards ─── */
+.lcai-hint-card {
+  position: relative;
+  padding: 12px;
+  padding-top: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.lcai-hint-badge {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #4ade80;
+  color: #0b0e14;
+}
+
+.lcai-hint-badge-2 {
+  background: #fbbf24;
+}
+
+.lcai-hint-badge-3 {
+  background: #fb923c;
+}
+
+.lcai-hint-card pre {
+  margin-top: 4px;
+}
+
+/* ─── Complexity Grid ─── */
+.lcai-complexity-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lcai-complexity-card {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.lcai-complexity-card h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lcai-complexity-optimal {
+  border-color: color-mix(in srgb, #4ade80 30%, var(--border));
+  background: color-mix(in srgb, #4ade80 5%, var(--surface-2));
+}
+
+.lcai-complexity-user {
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  background: color-mix(in srgb, var(--accent) 5%, var(--surface-2));
+}
+
+.lcai-complexity-values {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+}
+
+.lcai-complexity-values strong {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.lcai-complexity-explanation {
+  padding: 0;
+}
+
+.lcai-complexity-explanation h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ─── Code Review ─── */
+.lcai-review-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lcai-review-score {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.lcai-score-number {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+}
+
+.lcai-score-label {
+  font-size: 18px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.lcai-review-section h4 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ─── Multi-Approach Cards ─── */
+.lcai-approaches-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lcai-approach-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  background: var(--surface-2);
+}
+
+.lcai-approach-card h4 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ─── Pattern Banner ─── */
+.lcai-pattern-banner {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, #60a5fa 25%, var(--border));
+  background: color-mix(in srgb, #60a5fa 6%, var(--surface-2));
+  margin-bottom: 4px;
+}
+
+.lcai-pattern-banner h4 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #60a5fa;
+}
+
+.lcai-pattern-banner p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ─── Concept Explanations ─── */
+.lcai-concept-tag {
+  background: color-mix(in srgb, var(--accent) 15%, var(--surface-2)) !important;
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border)) !important;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.lcai-concept-explanations {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.lcai-concept-item {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.lcai-concept-item strong {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.lcai-concept-item p {
+  margin: 4px 0 0;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* ─── Chat Suggestions ─── */
+.lcai-chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.lcai-chat-suggestions button {
+  padding: 5px 10px;
+  font-size: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface-2));
+  border-color: color-mix(in srgb, var(--accent) 25%, var(--border));
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.lcai-chat-suggestions button:hover {
+  background: color-mix(in srgb, var(--accent) 20%, var(--surface-2));
+}
+
+/* ─── Tile Cached Indicator ─── */
+.lcai-tile-cached {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  border-radius: 50%;
+  background: color-mix(in srgb, #4ade80 15%, var(--surface-2));
+  color: #4ade80;
+  border: 1px solid color-mix(in srgb, #4ade80 30%, var(--border));
+}
